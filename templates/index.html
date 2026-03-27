@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Student Assistant</title>
+    <!-- Use a modern Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- html2pdf.js for generating PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Feather Icons for professional premium minimal icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="dark-mode">
+    <div class="app-wrapper">
+        <!-- History Sidebar -->
+        <aside class="sidebar collapsed" id="sidebar">
+            <button id="new-chat-btn" class="sidebar-btn"><i data-feather="plus"></i> New Chat</button>
+            <div class="history-list" id="history-list">
+                <!-- Session items will be dynamically added here -->
+            </div>
+            <button id="delete-all-btn" class="sidebar-btn danger-btn" style="margin-top: auto; background: #ff4757; margin-bottom:0; display:flex; align-items:center; justify-content:center; gap:8px;"><i data-feather="alert-triangle"></i> Delete All</button>
+        </aside>
+
+        <div class="chat-container">
+            <!-- Header area -->
+        <header class="chat-header">
+            <div class="header-left">
+                <button id="toggle-sidebar" class="icon-btn" title="Toggle Sidebar"><i data-feather="sidebar"></i></button>
+                <div class="header-titles">
+                    <h1>🎓 AI Student Assistant</h1>
+                    <p class="subtitle">Ask me any academic questions!</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme"><i data-feather="moon"></i></button>
+                <button id="download-pdf" class="icon-btn" title="Download Chat as PDF"><i data-feather="download"></i></button>
+                <button id="clear-chat-btn" class="icon-btn" title="Clear Current Chat"><i data-feather="trash-2"></i></button>
+                
+                <div class="user-profile">
+                    <span class="username">{{ username }}</span>
+                    <a href="/logout" id="logout-btn" class="icon-btn logout-link" title="Logout" style="text-decoration:none;"><i data-feather="log-out"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat history area -->
+        <div class="chat-box" id="chat-box">
+            <!-- Example initial greeting -->
+            <div class="message bot-message">
+                <div class="message-content">
+                    Hello! I'm your AI Student Assistant. How can I help you with your studies today?
+                </div>
+            </div>
+        </div>
+
+        <!-- Input area -->
+        <div class="input-container">
+            <select id="mode" class="mode-select" title="Select AI Mode">
+                <option value="study"><i data-feather="book-open"></i> Study Mode</option>
+                <option value="coding"><i data-feather="code"></i> Coding Mode</option>
+                <option value="interview"><i data-feather="users"></i> Interview Mode</option>
+            </select>
+            <button id="mic-button" class="icon-btn" title="Voice Input"><i data-feather="mic"></i></button>
+            <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off" />
+            <button id="send-button" title="Send message"><i data-feather="send"></i></button>
+        </div>
+    </div>
+    </div>
+
+    <!-- Link the frontend JavaScript logic -->
+    <script src="/static/script.js"></script>
+</body>
+</html>

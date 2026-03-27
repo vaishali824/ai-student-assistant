@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AI Student Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        body {
+            background: #1e1e24;
+            color: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .admin-header {
+            background: #151518;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+        .admin-header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logout-btn {
+            background: #ff4757;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+        .logout-btn:hover {
+            opacity: 0.9;
+        }
+        .nav-btn {
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: opacity 0.2s;
+            margin-right: 15px;
+        }
+        .nav-btn:hover {
+            opacity: 0.9;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        .dashboard-container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #232329;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #333;
+        }
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+            color: #ccc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #333;
+        }
+        th {
+            color: #888;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background: #2a2a32;
+        }
+        .username-badge {
+            background: #3a3a45;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header class="admin-header">
+        <h1><i data-feather="shield"></i> Admin Dashboard</h1>
+        <div class="header-actions">
+            <a href="/" class="nav-btn"><i data-feather="message-square"></i> Chat APP</a>
+            <a href="/logout" class="logout-btn"><i data-feather="log-out"></i> Logout</a>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="card">
+            <h2>User Login Logs</h2>
+            {% if logs and logs|length > 0 %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Login Time (UTC)</th>
+                        <th>IP Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in logs %}
+                    <tr>
+                        <td><span class="username-badge">{{ row[0] }}</span></td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] if row[2] else 'Unknown' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="empty-state">
+                <i data-feather="inbox" style="width: 48px; height: 48px; margin-bottom: 15px; opacity: 0.5;"></i>
+                <p>No login records found.</p>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

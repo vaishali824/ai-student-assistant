@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI Student Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: #f5f5f5;
+        }
+        .auth-container {
+            background: #1e1e24;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .auth-container h2 {
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: #f5f5f5;
+        }
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .auth-form input {
+            padding: 14px 16px;
+            border: 1px solid #444;
+            border-radius: 12px;
+            background: transparent;
+            color: #f5f5f5;
+            outline: none;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .auth-form input:focus {
+            border-color: #667eea;
+        }
+        .auth-form button {
+            background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+        .auth-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .auth-link {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+        .auth-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+        .error-msg {
+            background-color: rgba(255, 71, 87, 0.1);
+            color: #ff4757;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="auth-container">
+        <div class="logo">🎓</div>
+        <h2>Welcome Back</h2>
+        {% if error %}
+        <div class="error-msg">{{ error }}</div>
+        {% endif %}
+        {% if success %}
+        <div class="success-msg" style="background-color: rgba(46, 213, 115, 0.1); color: #2ed573; padding: 12px; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px;">{{ success }}</div>
+        {% endif %}
+        <form class="auth-form" method="POST" action="/login">
+            <input type="text" name="username" placeholder="Username" required autocomplete="off">
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login to Chatbot</button>
+        </form>
+        <div class="auth-link">
+            Don't have an account? <a href="/signup">Sign up</a>
+        </div>
+    </div>
+</body>
+</html>
